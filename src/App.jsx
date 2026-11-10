@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import UserList from './UserList.jsx'
 
 function App() {
   const [users, setUsers] = useState([])
@@ -44,7 +45,7 @@ function App() {
 
       {loading && <p>Loading users…</p>}
       {error && <p role="alert">Error: {error}</p>}
-      {!loading && !error && <p>{users.length} users loaded</p>}
+      {!loading && !error && <UserList users={users} />}
     </main>
   )
 }
