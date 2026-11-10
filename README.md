@@ -1,27 +1,27 @@
 # Day 7 - API Directory App
 
-A React app that fetches users from the JSONPlaceholder API and displays them in a searchable directory.
+This is a React app that loads users from JSONPlaceholder. You can search by name and see each user's email and company.
 
-## Run locally
+## How to run it
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+Open the localhost link that shows up in the terminal.
 
 ## Features
 
-- Fetches users when the app loads using `useEffect`, `fetch`, and `async/await`.
-- Displays each user's name, email, and company using `UserList` and `UserCard`.
-- Filters users by name as you type in `SearchBar`, regardless of capitalization.
-- Shows loading, error, and no-results messages.
+- Loads users with `fetch` when the page opens.
+- Shows each user's name, email, and company on a card.
+- Filters the list as you type a name. Capital letters work too.
+- Shows a message while the data loads, if the request fails, or if there are no matches.
 
 ## Reflection
 
-1. **Why is data fetching considered a side effect?** Fetching makes a network request outside React's rendering process. The response arrives later and updates state, which causes React to render again.
-2. **Why do we need a loading state?** It tells the user the request is still in progress so they know why the list has yet to appear.
-3. **Why do we need an error state?** It tells the user when the request failed and distinguishes a failed request from an empty search.
-4. **Why is filtering usually done during render?** The filtered list can be calculated directly from the users and the current search term. React renders again when either changes, so there's no need for an effect or a separate state variable.
-5. **What was the hardest part of this project?** One snag was getting localhost working again. I learned that the Vite dev server has to stay running while I use the app, and that I can use another terminal tab for Git commands.
+1. **Why is data fetching a side effect?** The app has to make a request outside of React to get the users. When the data comes back, I update the state and React shows the list.
+2. **Why do we need a loading state?** It lets people know the app is still getting the users, especially if the request takes a second.
+3. **Why do we need an error state?** If the request fails, the app can tell you what happened instead of leaving you looking at an empty page.
+4. **Why is filtering usually done without `useEffect`?** I already have the users and whatever's typed in the search box. I can use `.filter()` when React renders, and it runs again when I type something new.
+5. **What was the hardest part?** I got stuck when localhost wouldn't connect. Once I restarted Vite, I could test the search. I learned to leave the server running in one terminal tab and use another tab for Git.
